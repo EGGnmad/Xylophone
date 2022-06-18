@@ -15,7 +15,6 @@ void XylophoneClient::connect_handler(string name) {
 }
 
 void XylophoneClient::recv_handler(string name, string msg){
-	cout << "¼­¹ö: ";
 	xylophone_play(msg);
 }
 
