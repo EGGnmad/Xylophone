@@ -25,6 +25,8 @@ int main() {
 	if (type == 1) {
 		XylophoneServer server("0.0.0.0", question<int>("포트를 입력하세요"), question<int>("최대 인원을 입력하세요"));
 
+		system("cls");
+
 		thread t1([&] {
 			server.start();
 		});
@@ -56,7 +58,9 @@ int main() {
 	}
 
 	else if (type == 2) {
-		XylophoneClient client(question<string>("이름을 입력하세요"), question<string>("포트를 입력하세요"), question<int>("포트를 입력하세요"));
+		XylophoneClient client(question<string>("이름을 입력하세요"), question<string>("아이피를 입력하세요"), question<int>("포트를 입력하세요"));
+
+		system("cls");
 
 		thread t1([&] {
 			client.start();

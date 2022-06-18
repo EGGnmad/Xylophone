@@ -7,19 +7,19 @@ void XylophoneServer::play(string note) {
 }
 
 void XylophoneServer::start_handler() {
-	cout << "!! Server started" << endl;
+	cout << "서버가 시작되었습니다" << endl;
 }
 
 void XylophoneServer::stop_handler() {
-	cout << "!! Server stopped" << endl;
+	cout << "서버가 종료되었습니다" << endl;
 }
 
 void XylophoneServer::connect_handler(string name) {
-	cout << name << "+" << endl;
+	cout << name << "이/가 접속했습니다." << endl;
 }
 
 void XylophoneServer::disconnect_handler(string name) {
-	cout << name << "-" << endl;
+	cout << name << "이/가 퇴장했습니다." << endl;
 }
 
 void XylophoneServer::recv_handler(string name, string msg) {

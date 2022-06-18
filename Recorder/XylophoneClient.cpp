@@ -11,13 +11,14 @@ void XylophoneClient::start_handler(){}
 void XylophoneClient::stop_handler(){}
 
 void XylophoneClient::connect_handler(string name) {
-	cout << "connected!" << endl;
+	cout << "서버에 접속하였습니다" << endl;
 }
 
 void XylophoneClient::recv_handler(string name, string msg){
+	cout << "서버: ";
 	xylophone_play(msg);
 }
 
 void XylophoneClient::disconnect_handler(string name) {
-	cout << "disconnected!" << endl;
+	cout << "서버에서 퇴장했습니다" << endl;
 }

@@ -11,9 +11,10 @@
 using namespace std;
 
 short KeyState[256] = { 0 };
+string note_string[8] = { "C1", "D1", "E1", "F1", "G1", "A1", "B1", "C2" };
 
 void xylophone_play(string note) {
-	cout << note << "Play" << endl;
+	cout << "Play " << note_string[atoi(note.c_str()) -1] << endl;
 
 	wstring a;
 	a.assign(note.begin(), note.end());
