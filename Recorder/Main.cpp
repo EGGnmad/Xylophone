@@ -6,42 +6,88 @@
 
 using namespace std;
 
+template <typename T>
+T question(string msg) {
+	T inp;
+	cout << msg << endl;
+	cin >> inp;
+
+	return inp;
+}
+
 int main() {
 	__DFstart;
-	//XylophoneServer server("0.0.0.0", 8888, 3);
-	XylophoneClient client("Lee", "125.132.39.158", 8888);
+	
+	int type;
 
-	thread t1([&] {
-		client.start();
-	});
+	type = question<int>("(1) 서버 만들기\n(2) 접속하기");
 
-	thread t3([&] {
-		while (true) {
-			if (GetAsyncKeyDown(0x41))
-				client.play("1");
-			if (GetAsyncKeyDown(0x53))
-				client.play("2");
-			if (GetAsyncKeyDown(0x44))
-				client.play("3");
-			if (GetAsyncKeyDown(0x46))
-				client.play("4");
-			//
-			if (GetAsyncKeyDown(0x4a))
-				client.play("5");
-			if (GetAsyncKeyDown(0x4b))
-				client.play("6");
-			if (GetAsyncKeyDown(0x4c))
-				client.play("7");
-			if (GetAsyncKeyDown(0xba))
-				client.play("8");
-		}
-	});
+	if (type == 1) {
+		XylophoneServer server("0.0.0.0", question<int>("포트를 입력하세요"), question<int>("최대 인원을 입력하세요"));
+
+		thread t1([&] {
+			server.start();
+		});
+
+		thread t2([&] {
+			while (true) {
+				if (GetAsyncKeyDown(0x41))
+					server.play("1");
+				if (GetAsyncKeyDown(0x53))
+					server.play("2");
+				if (GetAsyncKeyDown(0x44))
+					server.play("3");
+				if (GetAsyncKeyDown(0x46))
+					server.play("4");
+				//
+				if (GetAsyncKeyDown(0x4a))
+					server.play("5");
+				if (GetAsyncKeyDown(0x4b))
+					server.play("6");
+				if (GetAsyncKeyDown(0x4c))
+					server.play("7");
+				if (GetAsyncKeyDown(0xba))
+					server.play("8");
+			}
+		});
+
+		t1.join();
+		t2.join();
+	}
+
+	else if (type == 2) {
+		XylophoneClient client(question<string>("이름을 입력하세요"), question<string>("포트를 입력하세요"), question<int>("포트를 입력하세요"));
+
+		thread t1([&] {
+			client.start();
+		});
+
+		thread t2([&] {
+			while (true) {
+				if (GetAsyncKeyDown(0x41))
+					client.play("1");
+				if (GetAsyncKeyDown(0x53))
+					client.play("2");
+				if (GetAsyncKeyDown(0x44))
+					client.play("3");
+				if (GetAsyncKeyDown(0x46))
+					client.play("4");
+				//
+				if (GetAsyncKeyDown(0x4a))
+					client.play("5");
+				if (GetAsyncKeyDown(0x4b))
+					client.play("6");
+				if (GetAsyncKeyDown(0x4c))
+					client.play("7");
+				if (GetAsyncKeyDown(0xba))
+					client.play("8");
+			}
+		});
 
 
-
-	t1.join();
-	//t2.join();
-	//t3.join();
+		t1.join();
+		t2.join();
+	}
 	
 
 	__DFclean;
